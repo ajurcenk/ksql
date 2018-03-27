@@ -13,29 +13,36 @@ Configuring KSQL Server
 KSQL configuration parameters can be set for Admin Client, KSQL Query, KSQL Server, Kafka Streams, and Kafka Clients. The
 KSQL Server parameters are configured via the ``/etc/ksql/ksql-server.properties`` file.
 
-You can set the following parameters for the KSQL Server.
+You can set the following parameters for the KSQL Server. 
 
 .. important:: KSQL Server configuration settings take precedence over those set in the KSQL CLI. For example, if a value
                for ``ksql.streams.replication.factor`` is set in both the KSQL Server and KSQL CLI, the KSQL Server value is used.
 
 KSQL Query
-    These configurations control how KSQL executes queries. These can be provided with the required ``ksql`` prefix. For
-    example, ``ksql.service.id`` and ``ksql.persistent.prefix``.
+    These configurations control how KSQL executes queries. These configurations can be specified via the ``ksql-server.properties``
+    file or via ``SET`` in a KSQL CLI. For example, ``ksql.service.id`` and ``ksql.persistent.prefix``.
 
 Kafka Streams and Kafka Client
-    These configurations control how Kafka Streams executes queries. These can be provided with the optional ``ksql.streams``
+    These configurations control how Kafka Streams executes queries. These configurations can be specified via the
+    ``ksql-server.properties`` file or via ``SET`` in a KSQL CLI. These can be provided with the optional ``ksql.streams``
     prefix. For example,  ``ksql.streams.auto.offset.reset`` and ``ksql.streams.cache.max.bytes.buffering``.
 
+    .. important:: Although you can use either prefixed (``ksql.streams``) or un-prefixed settings, it is recommended that
+                   you use prefixed settings.
 
 You can set the following parameters for the KSQL Server only.
 
 Admin Client
-    These configurations control the KSQL admin client and use the same parameters as Kafka Streams. These can be provided
-    via the properties file with the optional ``ksql.streams`` prefix.
+    These configurations control the KSQL admin client and use the same parameters as Kafka Streams. These configurations
+    can be specified via only the ``ksql-server.properties`` file. These can be provided via the properties file with the
+    optional ``ksql.streams`` prefix. For example, ``ksql.streams.bootstrap.servers`` and ``ksql.streams.security.protocol``.
+
+    .. important:: Although you can use either prefixed (``ksql.streams``) or un-prefixed settings, it is recommended that
+                   you use prefixed settings.
 
 KSQL Server
-    These configurations control the general behavior of the KSQL Server. For example, ``ksql.command.topic.suffix`` and
-    ``ui.enabled``
+    These configurations control the general behavior of the KSQL Server. These configurations can be specified via only
+    the ``ksql-server.properties`` file. For example, ``command.topic.suffix`` and ``ui.enabled``
 
 --------------------
 KSQL Properties File
